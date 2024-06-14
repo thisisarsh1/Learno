@@ -34,7 +34,7 @@ const getCourseById=()=>{
      </div>
      
     <div className=' col-span-1 bg-white p-2 rounded-2xl'> 
-       <CourseEnroll></CourseEnroll>
+       <CourseEnroll CourseInfo={CourseInfo}></CourseEnroll>
        <CourseContent CourseInfo={CourseInfo}></CourseContent>
       </div>
 

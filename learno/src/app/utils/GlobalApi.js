@@ -99,8 +99,35 @@ return result2;
 
 
 
+const enrollTocourse= async(CourseId,email)=>{
+  const query =gql`
+  
+  mutation MyMutation {
+    createUserEnrollcourse(
+      data: {courseId: "`+CourseId+`", userEmail: "`+email+`", courseList: {connect: {slugId: "`+CourseId+`"}}}
+    ) {
+      courseId
+      id
+    }
+    publishManyUserEnrollcoursesConnection(where: {}) {
+      edges {
+        node {
+          id
+        }
+      }
+    }
+  }
+  
+  
+  `
+const result3 = await request(MasterURL, query);
+return result3;
+}
+
+
 export default { 
     getAllCourseList,
     getsideBar,
-    getCoursePrev
+    getCoursePrev,
+    enrollTocourse
 }
