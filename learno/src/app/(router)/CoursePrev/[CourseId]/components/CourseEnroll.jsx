@@ -4,27 +4,18 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import GlobalApi from "@/app/utils/GlobalApi";
 import { toast } from "sonner";
+import { useEffect } from "react";
 
-export default function CourseEnroll({ CourseInfo }) {
-  const membership = true;
+export default function CourseEnroll({ CourseInfo,isUserAlreadyEnrolled }) {
+  const membership = false;
   
   const { user } = useUser();
-  console.log(user.primaryEmailAddress?.emailAddress)
+useEffect(()=>{
+  console.log('isUserAlreadyEnrolled',isUserAlreadyEnrolled)
+},[])
   const router = useRouter();
   const OnEnrollCourse = () => {
-    if (!CourseInfo || !user) {
-      console.error("CourseInfo or user is not defined");
-      return;
-    }
-
-    const courseSlug = CourseInfo.slugId;
-
-
-    if (!courseSlug) {
-      console.error("Course slug or user email is missing");
-      return;
-    }
-
+   
     GlobalApi.enrollTocourse(
       CourseInfo?.slugId,
       user.primaryEmailAddress?.emailAddress
@@ -43,9 +34,11 @@ export default function CourseEnroll({ CourseInfo }) {
       }
     });
   };
+  // check if already added or not
+
   return (
     <div>
-      {user && (membership || CourseInfo.free) ? (
+      {user && (membership || CourseInfo.free)&&!isUserAlreadyEnrolled ? (
         <div className="bg-[#79BBDB] rounded-2xl p-3 text-center">
           <div className="text-2xl font-extrabold text-white text-center p-3 ">
             ENROL NOW !
@@ -80,7 +73,7 @@ export default function CourseEnroll({ CourseInfo }) {
           </Link>
           {console.log("unsuccessful")}
         </div>
-      ) : (
+      ) : !isUserAlreadyEnrolled &&
         <div className="bg-[#79BBDB] rounded-2xl p-3 text-center">
           <div className="text-2xl font-extrabold text-white text-center p-3 ">
             ENROL TO THE COURSE !
@@ -96,8 +89,26 @@ export default function CourseEnroll({ CourseInfo }) {
               Buy Membership at just ₹500
             </button>
           </Link>
-        </div>
-      )}
+        </div>}
+      
+      
+      {isUserAlreadyEnrolled && <div className="bg-[#79BBDB] rounded-2xl p-3 text-center">
+          <div className="text-2xl font-extrabold text-white text-center p-3 ">
+            Continue Learning
+          </div>
+          <div className="text-lg text-white ">
+            Continue lLearning and building your project
+          </div>
+          <Link href={"/WatchCourse/" + isUserAlreadyEnrolled}>
+            <button
+              type="button"
+              className=" my-5 text-primary bg-white hover:bg-[#E2E2E2] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 "
+            >
+              Continue
+            </button>
+          </Link>
+        </div>}
+      
     </div>
   );
 }

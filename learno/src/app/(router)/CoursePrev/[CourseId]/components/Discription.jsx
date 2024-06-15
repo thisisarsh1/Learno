@@ -29,7 +29,7 @@ function Discription({CourseInfo}) {
       {CourseInfo && CourseInfo.chapter && (
         <div>
       <div className="text-2xl font-bold my-3 text-primary">{CourseInfo.chapter[0]?.name}</div>
-  <video width={1000} height={250} controls className='rounded-lg'>
+  <video width={1000} height={250} controls className='rounded-lg' poster={CourseInfo.banner?.url}>
     <source src={CourseInfo.chapter[0]?.video?.url} type='video/mp4' />
 
   </video>

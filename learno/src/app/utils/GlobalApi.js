@@ -78,6 +78,10 @@ const getCoursePrev= async(CourseId)=>{
       free
       discription
       author
+      banner {
+        id
+        url
+      }
       chapter {
         ... on Chapter {
           id
@@ -125,9 +129,22 @@ return result3;
 }
 
 
+const CheckEnrollment= async(CourseId,email)=>{
+  const query =gql`
+  query MyQuery {
+    userEnrollcourses(where: {courseId: "`+CourseId+`", userEmail: "`+email+`"}) {
+      id
+    }
+  }
+  `
+const result4 = await request(MasterURL, query);
+return result4;
+}
+
 export default { 
     getAllCourseList,
     getsideBar,
     getCoursePrev,
-    enrollTocourse
+    enrollTocourse,
+    CheckEnrollment
 }
