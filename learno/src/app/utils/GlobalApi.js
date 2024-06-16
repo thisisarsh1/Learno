@@ -86,10 +86,11 @@ const getCoursePrev= async(CourseId)=>{
         ... on Chapter {
           id
           name
+          smallDisc
           video {
             url
           }
-          smallDisc
+          
         }
       }
     }
@@ -141,10 +142,52 @@ const result4 = await request(MasterURL, query);
 return result4;
 }
 
+
+const GetUserEnrolledDeets= async(id,email)=>{
+  const query =gql`
+  query MyQuery {
+    userEnrollcourses(
+      where: {id: "`+id+`", userEmail: "`+email+`"}
+    ) {
+      id
+      userEmail
+      courseList {
+        author
+        chapter {
+          ... on Chapter {
+            id
+            name
+            smallDisc
+            video {
+              url
+            }
+          }
+        }
+        free
+      totalChapters
+      slugId
+      tags
+      name
+      banner {
+        id
+        url
+      }
+     
+      }
+    }
+  }
+  `
+const result5 = await request(MasterURL, query);
+return result5;
+}
+
+
+
 export default { 
     getAllCourseList,
     getsideBar,
     getCoursePrev,
     enrollTocourse,
-    CheckEnrollment
+    CheckEnrollment,
+    GetUserEnrolledDeets
 }

@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import Markdown from 'react-markdown'
-function Discription({CourseInfo}) {
+function Discription({CourseInfo,activeChap}) {
+  // console.log("helloyo",CourseInfo.chapter?.smallDisc)
   // const xyz="https://ap-south-1.graphassets.com/clufm1rv617z508pl9jklcpo3/cluml3o3k0ox307ppxys0s4lc"
   return (
     <div>
@@ -26,11 +27,17 @@ function Discription({CourseInfo}) {
       )}
      
 
-      {CourseInfo && CourseInfo.chapter && (
+      {CourseInfo.chapter && (
         <div>
-      <div className="text-2xl font-bold my-3 text-primary">{CourseInfo.chapter[0]?.name}</div>
-  <video width={1000} height={250} controls className='rounded-lg' poster={CourseInfo.banner?.url}>
-    <source src={CourseInfo.chapter[0]?.video?.url} type='video/mp4' />
+      <div className="text-2xl font-bold my-3 text-primary">{CourseInfo.chapter[activeChap]?.name}</div>
+  <video width={1000} 
+  height={250}
+  controls 
+  className='rounded-lg'
+  poster={CourseInfo.banner?.url} 
+  // videoUrl={CourseInfo.chapter[0]?.video?.url}
+  key={CourseInfo.chapter[activeChap]?.video?.url}>
+    <source src={CourseInfo.chapter[activeChap]?.video?.url} type='video/mp4' />
 
   </video>
   </div>
@@ -38,10 +45,11 @@ function Discription({CourseInfo}) {
     
 
 
-      <div className="text-xl font-bold mt-9">
-        Discription:-</div> 
-        <Markdown className="text-md m-2 ">{CourseInfo.discription}</Markdown>
-      
+    {CourseInfo.chapter && CourseInfo.chapter &&(<><div className="text-xl font-bold mt-9">
+        Discription:-</div>
+         <Markdown className="text-md m-2 ">{CourseInfo.chapter[activeChap]?.smallDisc}</Markdown>
+        <Markdown className="text-md m-2 ">{CourseInfo.discription}</Markdown></>)}
+    
     </div>
   );
 }

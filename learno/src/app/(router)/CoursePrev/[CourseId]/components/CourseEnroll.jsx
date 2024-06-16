@@ -11,7 +11,7 @@ export default function CourseEnroll({ CourseInfo,isUserAlreadyEnrolled }) {
   
   const { user } = useUser();
 useEffect(()=>{
-  console.log('isUserAlreadyEnrolled',isUserAlreadyEnrolled)
+  // console.log('isUserAlreadyEnrolled',isUserAlreadyEnrolled)
 },[])
   const router = useRouter();
   const OnEnrollCourse = () => {
@@ -20,8 +20,8 @@ useEffect(()=>{
       CourseInfo?.slugId,
       user.primaryEmailAddress?.emailAddress
     ).then((resp) => {
-      console.log("successful");
-      console.log(resp);
+      
+      
       if (resp) {
 
         
@@ -71,7 +71,7 @@ useEffect(()=>{
               ENROL NOW
             </button>
           </Link>
-          {console.log("unsuccessful")}
+          {/* {console.log("unsuccessful")} */}
         </div>
       ) : !isUserAlreadyEnrolled &&
         <div className="bg-[#79BBDB] rounded-2xl p-3 text-center">
@@ -97,7 +97,7 @@ useEffect(()=>{
             Continue Learning
           </div>
           <div className="text-lg text-white ">
-            Continue lLearning and building your project
+            Continue Learning and building your project Further
           </div>
           <Link href={"/WatchCourse/" + isUserAlreadyEnrolled}>
             <button
