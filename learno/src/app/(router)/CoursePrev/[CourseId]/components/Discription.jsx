@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import Markdown from 'react-markdown'
-function Discription({CourseInfo,activeChap}) {
+function Discription({CourseInfo,activeChap,watchMode=false,SetCompletedChap}) {
+
   // console.log("helloyo",CourseInfo.chapter?.smallDisc)
   // const xyz="https://ap-south-1.graphassets.com/clufm1rv617z508pl9jklcpo3/cluml3o3k0ox307ppxys0s4lc"
   return (
@@ -46,9 +47,27 @@ function Discription({CourseInfo,activeChap}) {
 
 
     {CourseInfo.chapter && CourseInfo.chapter &&(<><div className="text-xl font-bold mt-9">
-        Discription:-</div>
+       
+
+    <>{watchMode&&(<span>
+          <div className="my-5 flex flex-row justify-between ">
+  About This Courses:-
+    <button className="bg-primary text-white hover:bg-[#0F172B] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+    onClick={()=>SetCompletedChap(CourseInfo.chapter[activeChap]?.id)}
+    >
+      Mark as Completed
+    </button>
+  </div>
+
+        </span>)}</>
+        
+      
+          
+       </div>
          <Markdown className="text-md m-2 ">{CourseInfo.chapter[activeChap]?.smallDisc}</Markdown>
-        <Markdown className="text-md m-2 ">{CourseInfo.discription}</Markdown></>)}
+        <Markdown className="text-md m-2 ">{CourseInfo.discription}</Markdown>
+        
+        </>)}
     
     </div>
   );

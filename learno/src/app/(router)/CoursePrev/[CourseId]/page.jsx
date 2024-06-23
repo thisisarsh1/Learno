@@ -103,7 +103,7 @@ setIsUserAlreadyEnrolled(resp?.userEnrollcourses[0]?.id)
           // <Link href={"/WatchCourse/" + resp.createUserEnrollcourse.id}>
           <div key={index}>
             <div 
-              className={`flex justify-between text-lg border rounded-lg p-3 m-2 hover:bg-[#E2E2E2] hover:text-black ${activeIndex == index ? 'text-white bg-primary' : 'bg-white text-black'}`}
+              className={`flex justify-between text-lg border rounded-lg p-3 m-2 hover:text-white hover:bg-[#0F172B] ${activeIndex == index ? 'text-white bg-primary' : 'bg-white text-black'}`}
               onClick={() => {
                 
                  PushToWatchCourse()

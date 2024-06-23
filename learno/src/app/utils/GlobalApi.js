@@ -151,6 +151,12 @@ const GetUserEnrolledDeets= async(id,email)=>{
     ) {
       id
       userEmail
+      completedChapters {
+        ... on CompletedChapter {
+          id
+          chapId
+        }
+      }
       courseList {
         author
         chapter {
@@ -183,11 +189,77 @@ return result5;
 
 
 
+const GetCompletedChaps= async(id,chapId)=>{
+  const query =gql`
+  mutation MyMutation {
+    updateUserEnrollcourse(
+      data: {completedChapters: {create: {CompletedChapter: {data: {chapId: "`+chapId+`"}}}}}
+      where: {id: "`+id+`"}
+    ) {
+      id
+      courseId
+    courseList {
+      name
+    }
+    }
+    publishUserEnrollcourse(where: {id: "`+id+`"}) {
+      id
+    }
+  }
+  
+  
+  `
+const result6 = await request(MasterURL, query);
+return result6;
+}
+
+
+
+const GetProgressList= async(email)=>{
+  const query =gql`
+  query MyQuery {
+    userEnrollcourses(where: {userEmail: "`+email+`"}) {
+      completedChapters {
+        ... on CompletedChapter {
+          id
+        }
+      }
+      courseList {
+        id
+        author
+        free
+        name
+        slugId
+        totalChapters
+        banner {
+          id
+          url
+        }
+        discription
+        chapter {
+          ... on Chapter {
+            id
+            name
+          }
+        }
+        author
+      }
+    }
+  }
+
+  `
+const result7 = await request(MasterURL, query);
+return result7;
+}
+
+
 export default { 
     getAllCourseList,
     getsideBar,
     getCoursePrev,
     enrollTocourse,
     CheckEnrollment,
-    GetUserEnrolledDeets
+    GetUserEnrolledDeets,
+    GetCompletedChaps,
+    GetProgressList
 }
