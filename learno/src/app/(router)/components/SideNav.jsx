@@ -32,7 +32,7 @@ function SideNav() {
     },
     {
       id: 3,
-      title: "Be an Instructor",
+      title: "Be a Mentor",
       icon: <GraduationCap />,
       path:"/instructor",
       auth:true
