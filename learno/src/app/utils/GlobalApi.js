@@ -253,6 +253,22 @@ return result7;
 }
 
 
+const AddNewMember = async(email,paymentid)=>{
+  const query =gql`
+  mutation MyMutation {
+    createMembership(data: {paymentid: "`+paymentid+`", email: "`+email+`", active: true}) {
+      id
+    }
+    publishManyMemberships(to: PUBLISHED) {
+      count
+  }
+
+  `
+const result8 = await request(MasterURL, query);
+return result8;
+}
+
+
 export default { 
     getAllCourseList,
     getsideBar,
@@ -261,5 +277,6 @@ export default {
     CheckEnrollment,
     GetUserEnrolledDeets,
     GetCompletedChaps,
-    GetProgressList
+    GetProgressList,
+    AddNewMember
 }

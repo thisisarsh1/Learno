@@ -23,8 +23,8 @@ function InProgress({userEnrolledCourse}) {
            
               // <h1>Go to All Courses page to Enroll To Courses</h1>
               <Link href={'/courses'}>
-              <div class="flex items-center justify-center h-[50vh] ">
-  <div class="text-4xl font-bold bg-gradient-to-r from-primary via-purple-400 to-pink-700 bg-clip-text text-transparent transition duration-1000
+              <div className="flex items-center justify-center h-[50vh] ">
+  <div className="text-4xl font-bold bg-gradient-to-r from-primary via-purple-400 to-pink-700 bg-clip-text text-transparent transition duration-1000
    hover:bg-gradient-to-r hover:from-blue-800 hover:via-purple-600 hover:to-pink-400 ease-in  
   ">
     Navigate to All Courses to Enroll

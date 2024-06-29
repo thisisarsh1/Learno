@@ -54,10 +54,7 @@ setIsUserAlreadyEnrolled(resp?.userEnrollcourses[0]?.id)
 
     const PushToWatchCourse = () => {
    
-      GlobalApi.enrollTocourse(
-        CourseInfo?.slugId,
-        user.primaryEmailAddress?.emailAddress
-      ).then((resp) => {
+      
         
    
         if (!isUserAlreadyEnrolled) {
@@ -71,9 +68,9 @@ setIsUserAlreadyEnrolled(resp?.userEnrollcourses[0]?.id)
           
         }
         else{
-          router.push("/WatchCourse/" + resp.createUserEnrollcourse.id);
+          router.push("/WatchCourse/" + isUserAlreadyEnrolled);
         }
-      });
+      ;
     };
  
   return (

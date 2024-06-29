@@ -2,8 +2,8 @@ import React from 'react'
 
 function BannerMentor() {
   return (<>
-    <div class="flex items-center justify-center h-[7rem] ">
-    <div class="text-6xl font-bold bg-gradient-to-r from-primary via-purple-400 to-pink-700 bg-clip-text text-transparent transition-colors duration-1000
+    <div className="flex items-center justify-center h-[7rem] ">
+    <div className="text-6xl font-bold bg-gradient-to-r from-primary via-purple-400 to-pink-700 bg-clip-text text-transparent transition-colors duration-1000
      hover:bg-gradient-to-r hover:from-blue-800 hover:via-purple-600 hover:to-pink-400  ease-in  
     ">
       Fill the following FORM !
