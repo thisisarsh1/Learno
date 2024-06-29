@@ -262,10 +262,28 @@ const AddNewMember = async(email,paymentid)=>{
     publishManyMemberships(to: PUBLISHED) {
       count
   }
-
+}
   `
 const result8 = await request(MasterURL, query);
 return result8;
+}
+
+
+const checkmembership = async(email)=>{
+  const query =gql`
+ 
+  query MyQuery {
+    memberships(where: {email: "`+email+`"}) {
+      email
+      id
+      paymentid
+      createdAt
+    }
+  }
+
+  `
+const result9 = await request(MasterURL, query);
+return result9;
 }
 
 
@@ -278,5 +296,6 @@ export default {
     GetUserEnrolledDeets,
     GetCompletedChaps,
     GetProgressList,
-    AddNewMember
+    AddNewMember,
+    checkmembership
 }

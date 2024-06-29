@@ -58,6 +58,7 @@ GlobalApi.AddNewMember(user.primaryEmailAddress?.emailAddress,paymentId)
   }
 },(error)=>{
   toast('payment UnSuccessful!')
+  console.log(error)
 }
 )
 }

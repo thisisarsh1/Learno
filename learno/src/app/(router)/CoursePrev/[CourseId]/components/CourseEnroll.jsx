@@ -5,9 +5,12 @@ import { useUser } from "@clerk/nextjs";
 import GlobalApi from "@/app/utils/GlobalApi";
 import { toast } from "sonner";
 import { useEffect } from "react";
+import { useContext } from "react";
+import { UserMerberContext } from "@/app/_context/UserMemberContext";
 
 export default function CourseEnroll({ CourseInfo,isUserAlreadyEnrolled }) {
-  const membership = false;
+  const {isMember,setIsMember}=useContext(UserMerberContext)
+
   
   const { user } = useUser();
 useEffect(()=>{
@@ -38,7 +41,7 @@ useEffect(()=>{
 
   return (
     <div>
-      {user && (membership || CourseInfo.free)&&!isUserAlreadyEnrolled ? (
+      {user && (isMember || CourseInfo.free)&&!isUserAlreadyEnrolled ? (
         <div className="bg-[#79BBDB] rounded-2xl p-3 text-center">
           <div className="text-2xl font-extrabold text-white text-center p-3 ">
             ENROL NOW !
@@ -73,7 +76,7 @@ useEffect(()=>{
           </Link>
           {/* {console.log("unsuccessful")} */}
         </div>
-      ) : !isUserAlreadyEnrolled && !membership &&
+      ) : !isUserAlreadyEnrolled && !isMember &&
         <div className="bg-[#79BBDB] rounded-2xl p-3 text-center">
           <div className="text-2xl font-extrabold text-white text-center p-3 ">
             ENROL TO THE COURSE !

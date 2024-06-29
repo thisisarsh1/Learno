@@ -16,7 +16,7 @@ useEffect(()=>{
   const GetUserProgressDeets=()=>{
     GlobalApi.GetProgressList(user?.primaryEmailAddress?.emailAddress).then((resp)=>{
       setUserEnrolledCourse(resp.userEnrollcourses)
-      console.log(resp.userEnrollcourses)
+      // console.log(resp.userEnrollcourses)
     })
   }
   return (
