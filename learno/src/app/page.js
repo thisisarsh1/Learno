@@ -2,13 +2,13 @@
 import { UserButton, useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import GlobalApi from "./utils/GlobalApi";
+
 function Home() {
   
   const router = useRouter();
-  const {user,isLoaded}= useUser()
+  const {user,isLoaded}= useUser();
   useEffect(()=>{
-    user&&CheckUserMembership()
+    
     if(user){
       router.push("/Dashboard") 
     }

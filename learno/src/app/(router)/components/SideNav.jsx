@@ -37,13 +37,13 @@ function SideNav() {
       path:"/instructor",
       auth:true
     },
-    {
-      id: 4,
-      title: "Login",
-      icon: <LogIn />,
-      path:"/sign-in",
-      auth:true
-    },
+    // {
+    //   id: 4,
+    //   title: "Login",
+    //   icon: <LogIn />,
+    //   path:"/sign-in",
+    //   auth:true
+    // },
     
   ];
 //new thing usePath name can access path
@@ -66,8 +66,15 @@ const path = usePathname()
               <h2 className="text-lg ml-5">{item.title}</h2>
             </div>
           </Link>
+          
           </div>
         ))}
+        {!user&&<Link href={"/sign-in"}>
+            <div className={`mt-5 hover:bg-slate-100 hover:text-black rounded-lg text-white flex p-5 gap-3 transition ease-in-out duration-200 ${path.includes("/sign-in")&&' text-black bg-slate-900'}`}>
+              <div className=" hover:animate-bounce"><LogIn /></div>
+              <h2 className="text-lg ml-5">Login</h2>
+            </div>
+          </Link>}
       </div>
     </div>
   );

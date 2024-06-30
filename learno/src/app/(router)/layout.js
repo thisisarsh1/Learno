@@ -4,10 +4,11 @@ import SideNav from "./components/SideNav";
 import Header from "./components/Header";
 import { useUser } from "@clerk/nextjs";
 import GlobalApi from '@/app/utils/GlobalApi'
-import { UserMerberContext } from "../_context/UserMemberContext";
+import { UserMerberContext, searchcontext } from "../_context/UserMemberContext";
 
 function layout({ children }) {
   const { user } = useUser()
+  
 const {isMember,setIsMember}=useContext(UserMerberContext)
   useEffect(()=>{
     user&&CheckUserMembership()

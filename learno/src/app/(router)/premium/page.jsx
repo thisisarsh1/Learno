@@ -6,24 +6,31 @@ import Script from 'next/script';
 import { useUser } from "@clerk/nextjs";
 import GlobalApi from '@/app/utils/GlobalApi';
 import { toast } from 'sonner';
+import { Loader } from 'lucide-react';
+
 
 
 function page() {
   const[SubscriptionId,setSubscriptionID]=useState(null)
-
+const { user } = useUser();
   const createSubscription=async(planid)=>{
+    if(!user){
+      toast("Please Login first to Buy Membership")
+    }
+    else{
+      toast("Wait a second payment gateway is right on its way !!")
 axios.post("/api/create-subscription",JSON.stringify({
   planId:planid
 })).then(resp=>{
-  console.log(resp.data);
+  // console.log(resp.data);
   setSubscriptionID(resp.data.id)
  
-})
+})}
   }
   useEffect(()=>{
     SubscriptionId&&MakePayment()
   },[SubscriptionId])
-  const { user } = useUser();
+  
 const MakePayment=()=>{
   
   const options={
@@ -105,7 +112,7 @@ GlobalApi.AddNewMember(user.primaryEmailAddress?.emailAddress,paymentId)
       <div className="flex flex-wrap m-4 justify-center">
         {pricingTiers.map((tier, index) => (
           <div key={index} className="p-4 xl:w-2/4 md:w-1/2 w-full h-[25rem]">
-            <div className="h-full p-6 rounded-lg border-2 border-purple-600 flex flex-col relative overflow-hidden hover:text-[#186f4c] hover:bg-purple-100 transition ease-in duration-200">
+            <div className="h-full p-6 rounded-lg border-2 border-purple-600 flex flex-col relative overflow-hidden hover:text-[#0F172B] hover:bg-pink-100 transition ease-in duration-200">
               <h2 className="text-5xl tracking-widest title-font mb-1 font-medium pb-3" >
                 {tier.title}
               </h2>
@@ -119,9 +126,10 @@ GlobalApi.AddNewMember(user.primaryEmailAddress?.emailAddress,paymentId)
                   </li>
                 ))}
               </ul>
-              <button className="flex items-center mt-auto text-white bg-gray-400  py-2 px-4 w-full focus:outline-none hover:bg-[#186f4c] rounded hover:border-purple-600 transition ease-in duration-200" 
+              <button className="flex items-center mt-auto text-white bg-gray-400  py-2 px-4 w-full focus:outline-none hover:bg-[#0F172B] rounded hover:border-purple-600 transition ease-in duration-200" 
               onClick={()=>createSubscription(tier.id)}>
                 {tier.buttonText}
+
               </button>
             </div>
           </div>

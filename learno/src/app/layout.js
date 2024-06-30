@@ -5,7 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { Toaster } from "@/components/ui/sonner";
 import { UserMerberContext } from "./_context/UserMemberContext";
 import { useState } from "react";
-
+import { searchcontext } from "./_context/UserMemberContext";
 const inter = Space_Grotesk({ subsets: ["latin"] });
 
 // export const metadata = {
@@ -20,8 +20,10 @@ const inter = Space_Grotesk({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const [isMember,setIsMember]=useState(false)
+  const[search,setSearch]=useState("")
   return (
     <ClerkProvider>
+      <searchcontext.Provider value={{search,setSearch}}>
       <UserMerberContext.Provider value={{isMember,setIsMember}}>
       <html lang="en">
       
@@ -30,7 +32,7 @@ export default function RootLayout({ children }) {
       
       /></body>
     </html>
-    </UserMerberContext.Provider>
+    </UserMerberContext.Provider></searchcontext.Provider>
     </ClerkProvider>
   );
 }
