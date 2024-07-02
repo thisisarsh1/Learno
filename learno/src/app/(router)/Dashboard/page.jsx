@@ -1,5 +1,5 @@
 "use client"
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import WelcomeBanner from './components/welcomeBanner'
 import { useUser } from "@clerk/nextjs";
 import Sidebanners from '../courses/_components/Sidebanners';
