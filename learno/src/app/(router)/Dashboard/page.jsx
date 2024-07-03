@@ -1,9 +1,9 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import WelcomeBanner from './components/welcomeBanner'
+import WelcomeBanner from './components/WelcomeBanner'
 import { useUser } from "@clerk/nextjs";
 import Sidebanners from '../courses/_components/Sidebanners';
-import InProgress from './components/InProgress';
+import InProgress from './components/InProgress'; 
 import GlobalApi from '@/app/utils/GlobalApi';
 function page() {
   const { user } = useUser();
