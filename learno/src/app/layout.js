@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { UserMerberContext } from "./_context/UserMemberContext";
 import { useState } from "react";
 import { searchcontext } from "./_context/UserMemberContext";
+import { Analytics } from "@vercel/analytics/react"
 const inter = Space_Grotesk({ subsets: ["latin"] });
 
 // export const metadata = {
