@@ -22,7 +22,7 @@ const inter = Space_Grotesk({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   const [isMember,setIsMember]=useState(false)
   const[search,setSearch]=useState("")
-  return (
+  return (<>
     <ClerkProvider>
       <searchcontext.Provider value={{search,setSearch}}>
       <UserMerberContext.Provider value={{isMember,setIsMember}}>
@@ -35,5 +35,6 @@ export default function RootLayout({ children }) {
     </html>
     </UserMerberContext.Provider></searchcontext.Provider>
     </ClerkProvider>
+    <Analytics></Analytics></>
   );
 }
